@@ -8,7 +8,7 @@
 		http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
  
 	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
-		<property name="jndiName" value="jdbc/VivoDS"></property>
+		<property name="jndiName" value="java:jboss/jdbc/VivoDS"></property>
 	</bean>
 
 </beans>

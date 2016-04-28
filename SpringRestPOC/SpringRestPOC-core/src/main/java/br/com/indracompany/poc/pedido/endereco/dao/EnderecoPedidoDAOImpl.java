@@ -5,7 +5,6 @@ import java.util.List;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import br.com.indracompany.poc.pedido.endereco.entity.EnderecoPedido;
 import br.com.indracompany.poc.pedido.endereco.to.EnderecoPedidoTO;
 
@@ -19,8 +18,8 @@ public class EnderecoPedidoDAOImpl implements EnderecoPedidoDAO{
 	public EnderecoPedidoTO buscaEnderecoPedidoPorId(EnderecoPedidoTO enderecoTO) {
 
 		EnderecoPedidoTO enderecoPedidoTO = new EnderecoPedidoTO();
-		String hql = new String("FROM EnderecoPedido end WHERE idEnderecoPedido = ?");
-		List<EnderecoPedido> listaEnderecos = this.sessionFactory.getCurrentSession().createQuery(hql).setParameter(0, enderecoTO.getIdEnderecoPedido()).list();
+		String hql = new String("FROM EnderecoPedido WHERE idEnderecoPedido = ?");
+		List<EnderecoPedido> listaEnderecos = sessionFactory.getCurrentSession().createQuery(hql).setParameter(0, enderecoTO.getIdEnderecoPedido()).list();
 		
 		if ( listaEnderecos !=null && listaEnderecos.size() > 0) {
 			enderecoPedidoTO = new EnderecoPedidoTO(listaEnderecos.get(0));

@@ -34,7 +34,7 @@ public class MainController {
 		EnderecoPedidoTO enderecoTO = new EnderecoPedidoTO();
 		enderecoTO.setIdEnderecoPedido(new Long(idEnderecoPedido));
 
-		service.buscaEnderecoPedidoPorId(enderecoTO);
+		enderecoTO = service.buscaEnderecoPedidoPorId(enderecoTO);
 
 		model.addObject("nomeEnderecoPedido", enderecoTO.getNomeEndereco());
 

@@ -1,29 +1,31 @@
-package br.com.indracompany.poc.pedido.endereco;
+package br.com.indracompany.poc.pedido.endereco.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.com.indracompany.poc.pedido.endereco.dao.EnderecoPedidoDAO;
 import br.com.indracompany.poc.pedido.endereco.service.EnderecoPedidoService;
 import br.com.indracompany.poc.pedido.endereco.to.EnderecoPedidoTO;
 
-@Service("EnderecoPedidoService")
+@Service
+@Transactional
 public class EnderecoPedidoServiceImpl implements EnderecoPedidoService {
 
 	@Autowired
-	private EnderecoPedidoDAO enderecoPedidodao;
+	private EnderecoPedidoDAO enderecoPedidoDAO;
 
 	@Override
 	public EnderecoPedidoTO buscaEnderecoPedidoPorId(EnderecoPedidoTO enderecoTO) {
-		return this.enderecoPedidodao.buscaEnderecoPedidoPorId(enderecoTO);
+		return this.enderecoPedidoDAO.buscaEnderecoPedidoPorId(enderecoTO);
 	}
 
-	public EnderecoPedidoDAO getEnderecoPedidodao() {
-		return enderecoPedidodao;
+	public EnderecoPedidoDAO getEnderecoPedidoDAO() {
+		return enderecoPedidoDAO;
 	}
 
-	public void setEnderecoPedidodao(EnderecoPedidoDAO enderecoPedidodao) {
-		this.enderecoPedidodao = enderecoPedidodao;
+	public void setEnderecoPedidoDAO(EnderecoPedidoDAO enderecoPedidoDAO) {
+		this.enderecoPedidoDAO = enderecoPedidoDAO;
 	}
 
 }

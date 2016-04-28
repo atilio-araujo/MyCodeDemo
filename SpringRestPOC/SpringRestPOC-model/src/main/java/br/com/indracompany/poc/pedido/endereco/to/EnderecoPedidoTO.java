@@ -17,7 +17,7 @@ public class EnderecoPedidoTO {
 	private char delecaoLogica;
 	private long tipoEndereco;
 	private String descricao;
-	private char preferencial;
+	private String preferencial;
 
 	public EnderecoPedidoTO(EnderecoPedido endereco){
 		this.idEnderecoPedido = endereco.getIdEnderecoPedido();
@@ -98,10 +98,10 @@ public class EnderecoPedidoTO {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	public char getPreferencial() {
+	public String getPreferencial() {
 		return preferencial;
 	}
-	public void setPreferencial(char preferencial) {
+	public void setPreferencial(String preferencial) {
 		this.preferencial = preferencial;
 	}
 

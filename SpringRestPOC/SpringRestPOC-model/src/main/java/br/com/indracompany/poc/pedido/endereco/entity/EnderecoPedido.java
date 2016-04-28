@@ -21,7 +21,7 @@ public class EnderecoPedido {
 	private char delecaoLogica;
 	private long tipoEndereco;
 	private String descricao;
-	private char preferencial;
+	private String preferencial;
 
 	@Id
 	@Column(name = "ID_ORDER_ADDRESS", unique = true, nullable = false, precision = 10)
@@ -32,7 +32,7 @@ public class EnderecoPedido {
 		this.idEnderecoPedido = idEnderecoPedido;
 	}
 
-	@Column(name = "NAME", unique = true, nullable = false, length = 256)
+	@Column(name = "NAME", unique = false, nullable = false, length = 256)
 	public String getNomeEndereco() {
 		return nomeEndereco;
 	}
@@ -40,7 +40,7 @@ public class EnderecoPedido {
 		this.nomeEndereco = nomeEndereco;
 	}
 
-	@Column(name = "ADDRESS1", unique = true, nullable = false, length = 256)
+	@Column(name = "ADDRESS1", unique = false, nullable = false, length = 256)
 	public String getEndereco1() {
 		return endereco1;
 	}
@@ -48,7 +48,7 @@ public class EnderecoPedido {
 		this.endereco1 = endereco1;
 	}
 
-	@Column(name = "ADDRESS2", unique = true, nullable = false, length = 256)
+	@Column(name = "ADDRESS2", unique = false, nullable = false, length = 256)
 	public String getEndereco2() {
 		return endereco2;
 	}
@@ -56,7 +56,7 @@ public class EnderecoPedido {
 		this.endereco2 = endereco2;
 	}
 
-	@Column(name = "ADDRESS3", unique = true, nullable = false, length = 256)
+	@Column(name = "ADDRESS3", unique = false, nullable = false, length = 256)
 	public String getEndereco3() {
 		return endereco3;
 	}
@@ -64,7 +64,7 @@ public class EnderecoPedido {
 		this.endereco3 = endereco3;
 	}
 
-	@Column(name = "ADDRESS4", unique = true, nullable = false, length = 256)
+	@Column(name = "ADDRESS4", unique = false, nullable = false, length = 256)
 	public String getEndereco4() {
 		return endereco4;
 	}
@@ -72,7 +72,7 @@ public class EnderecoPedido {
 		this.endereco4 = endereco4;
 	}
 
-	@Column(name = "DATE_NEW", unique = true, nullable = false)
+	@Column(name = "DATE_NEW", unique = false, nullable = false)
 	public Timestamp getDataCriacao() {
 		return dataCriacao;
 	}
@@ -80,7 +80,7 @@ public class EnderecoPedido {
 		this.dataCriacao = dataCriacao;
 	}
 
-	@Column(name = "LOGICAL_DELETE", unique = true, nullable = false, length = 1)
+	@Column(name = "LOGICAL_DELETE", unique = false, nullable = false, length = 1)
 	public char getDelecaoLogica() {
 		return delecaoLogica;
 	}
@@ -88,7 +88,7 @@ public class EnderecoPedido {
 		this.delecaoLogica = delecaoLogica;
 	}
 
-	@Column(name = "TYPE", unique = true, nullable = false, precision = 10)
+	@Column(name = "TYPE", unique = false, nullable = false, precision = 10)
 	public long getTipoEndereco() {
 		return tipoEndereco;
 	}
@@ -96,7 +96,7 @@ public class EnderecoPedido {
 		this.tipoEndereco = tipoEndereco;
 	}
 
-	@Column(name = "DESCRIPTION", unique = true, nullable = false, length = 255)
+	@Column(name = "DESCRIPTION", unique = false, nullable = true, length = 255)
 	public String getDescricao() {
 		return descricao;
 	}
@@ -104,11 +104,11 @@ public class EnderecoPedido {
 		this.descricao = descricao;
 	}
 
-	@Column(name = "PREFERENTIAL", unique = true, nullable = false, length = 1)
-	public char getPreferencial() {
+	@Column(name = "PREFERENTIAL", unique = false, nullable = true, length = 1)
+	public String getPreferencial() {
 		return preferencial;
 	}
-	public void setPreferencial(char preferencial) {
+	public void setPreferencial(String preferencial) {
 		this.preferencial = preferencial;
 	}
 
