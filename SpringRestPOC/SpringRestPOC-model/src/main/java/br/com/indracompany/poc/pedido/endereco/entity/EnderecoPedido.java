@@ -1,14 +1,21 @@
 package br.com.indracompany.poc.pedido.endereco.entity;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import br.com.indracompany.poc.pedido.endereco.to.EnderecoPedidoTO;
 
 @Entity
 @Table(name = "ORDER_ADDRESS", schema = "GSIM")
+@SequenceGenerator(name = "EnderecoPedidoSEQ", sequenceName = "SEQ_ORDER_ADDRESS", schema = "GSIM", allocationSize = 1)
 public class EnderecoPedido {
 
 	private long idEnderecoPedido;
@@ -23,8 +30,29 @@ public class EnderecoPedido {
 	private String descricao;
 	private String preferencial;
 
+	public EnderecoPedido(EnderecoPedidoTO enderecoTO){
+		this.nomeEndereco = enderecoTO.getNomeEndereco();
+		this.endereco1 = enderecoTO.getEndereco1();
+		this.endereco2 = enderecoTO.getEndereco2();
+		this.endereco3 = enderecoTO.getEndereco3();
+		this.endereco4 = enderecoTO.getEndereco4();
+		if (enderecoTO.getDataCriacao() != null){
+			this.dataCriacao = new Timestamp(enderecoTO.getDataCriacao().getTime());
+		}
+		this.delecaoLogica = enderecoTO.getDelecaoLogica();
+		this.tipoEndereco = enderecoTO.getTipoEndereco();
+		this.descricao = enderecoTO.getDescricao();
+		this.preferencial = enderecoTO.getPreferencial();
+	}
+
+	public EnderecoPedido(){
+
+	}
+
+
 	@Id
 	@Column(name = "ID_ORDER_ADDRESS", unique = true, nullable = false, precision = 10)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "EnderecoPedidoSEQ")
 	public long getIdEnderecoPedido() {
 		return idEnderecoPedido;
 	}

@@ -13,6 +13,8 @@
         http://www.springframework.org/schema/tx 
         http://www.springframework.org/schema/tx/spring-tx.xsd ">
  
+ 	<import resource="datasources.xml" />
+
  	<mvc:annotation-driven />
 	<context:component-scan base-package="br.com.indracompany.poc" />
  
