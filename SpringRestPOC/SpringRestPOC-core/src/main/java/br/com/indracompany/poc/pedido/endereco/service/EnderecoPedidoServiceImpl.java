@@ -39,7 +39,12 @@ public class EnderecoPedidoServiceImpl implements EnderecoPedidoService {
 
 	@Override
 	public EnderecoPedidoTO atualizaEnderecoPedido(EnderecoPedidoTO enderecoPedidoTO) {
-		return this.atualizaEnderecoPedido(enderecoPedidoTO);
+		return this.enderecoPedidoDAO.atualizaEnderecoPedido(enderecoPedidoTO);
+	}
+
+	@Override
+	public List<EnderecoPedidoTO> buscaEnderecoPedidoPorCriterio(EnderecoPedidoTO enderecoTO) {
+		return this.enderecoPedidoDAO.buscaEnderecoPedidoPorCriterio(enderecoTO);
 	}
 
 	public EnderecoPedidoDAO getEnderecoPedidoDAO() {
@@ -49,4 +54,5 @@ public class EnderecoPedidoServiceImpl implements EnderecoPedidoService {
 	public void setEnderecoPedidoDAO(EnderecoPedidoDAO enderecoPedidoDAO) {
 		this.enderecoPedidoDAO = enderecoPedidoDAO;
 	}
+
 }

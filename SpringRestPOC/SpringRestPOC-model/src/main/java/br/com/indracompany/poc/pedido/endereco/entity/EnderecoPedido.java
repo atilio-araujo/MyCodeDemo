@@ -29,8 +29,12 @@ public class EnderecoPedido {
 	private long tipoEndereco;
 	private String descricao;
 	private String preferencial;
+	private String usuarioCriacao;
 
 	public EnderecoPedido(EnderecoPedidoTO enderecoTO){
+		if ( enderecoTO.getIdEnderecoPedido() > 0 ){
+			this.idEnderecoPedido = enderecoTO.getIdEnderecoPedido();
+		}
 		this.nomeEndereco = enderecoTO.getNomeEndereco();
 		this.endereco1 = enderecoTO.getEndereco1();
 		this.endereco2 = enderecoTO.getEndereco2();
@@ -43,6 +47,7 @@ public class EnderecoPedido {
 		this.tipoEndereco = enderecoTO.getTipoEndereco();
 		this.descricao = enderecoTO.getDescricao();
 		this.preferencial = enderecoTO.getPreferencial();
+		this.usuarioCriacao = enderecoTO.getUsuarioCriacao();
 	}
 
 	public EnderecoPedido(){
@@ -138,6 +143,15 @@ public class EnderecoPedido {
 	}
 	public void setPreferencial(String preferencial) {
 		this.preferencial = preferencial;
+	}
+
+	@Column(name = "USR_NEW", unique = false, nullable = false, length = 20)
+	public String getUsuarioCriacao() {
+		return usuarioCriacao;
+	}
+
+	public void setUsuarioCriacao(String usuarioCriacao) {
+		this.usuarioCriacao = usuarioCriacao;
 	}
 
 }

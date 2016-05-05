@@ -3,7 +3,10 @@ package br.com.indracompany.poc.pedido.endereco.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
+import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import br.com.indracompany.poc.pedido.endereco.entity.EnderecoPedido;
@@ -66,10 +69,59 @@ public class EnderecoPedidoDAOImpl implements EnderecoPedidoDAO{
 	public EnderecoPedidoTO atualizaEnderecoPedido(EnderecoPedidoTO enderecoPedidoTO){
 
 		EnderecoPedido enderecoPedidoOriginal = this.buscaEnderecoPedidoPorId(enderecoPedidoTO.getIdEnderecoPedido());
-		EnderecoPedido enderecoPedidoFinal = (EnderecoPedido) this.sessionFactory.getCurrentSession().merge(new EnderecoPedido(enderecoPedidoTO));
-		this.sessionFactory.getCurrentSession().update(enderecoPedidoFinal);
+		enderecoPedidoOriginal = (EnderecoPedido) this.sessionFactory.getCurrentSession().merge(new EnderecoPedido(enderecoPedidoTO));
+		this.sessionFactory.getCurrentSession().update(enderecoPedidoOriginal);
 
-		return new EnderecoPedidoTO(enderecoPedidoFinal);
+		return new EnderecoPedidoTO(enderecoPedidoOriginal);
+	}
+
+	@Override
+	public List<EnderecoPedidoTO> buscaEnderecoPedidoPorCriterio(EnderecoPedidoTO enderecoTO) {
+
+		Criteria criteria = this.sessionFactory.getCurrentSession().createCriteria(EnderecoPedido.class);
+
+		if (enderecoTO.getIdEnderecoPedido() > 0){
+			criteria.add(Restrictions.eq("idEnderecoPedido", enderecoTO.getIdEnderecoPedido()));
+		}
+
+		if (StringUtils.isNotBlank(enderecoTO.getNomeEndereco())){
+			criteria.add(Restrictions.eq("nomeEndereco", enderecoTO.getNomeEndereco()));
+		}
+
+		if (StringUtils.isNotBlank(enderecoTO.getDescricao())){
+			criteria.add(Restrictions.like("descricao", "%" + enderecoTO.getDescricao() + "%"));
+
+		}
+
+		if (StringUtils.isNotBlank(enderecoTO.getPreferencial())){
+			criteria.add(Restrictions.eq("preferencial", enderecoTO.getPreferencial()));
+		}
+
+		if (StringUtils.isNotBlank(enderecoTO.getEndereco1())){
+			criteria.add(Restrictions.eq("endereco1", enderecoTO.getEndereco1()));
+		}
+
+		if (StringUtils.isNotBlank(enderecoTO.getEndereco2())){
+			criteria.add(Restrictions.eq("endereco2", enderecoTO.getEndereco2()));
+		}
+
+		if (StringUtils.isNotBlank(enderecoTO.getEndereco3())){
+			criteria.add(Restrictions.eq("endereco3", enderecoTO.getEndereco3()));
+		}
+
+		if (StringUtils.isNotBlank(enderecoTO.getEndereco4())){
+			criteria.add(Restrictions.eq("endereco4", enderecoTO.getEndereco4()));
+		}
+
+		List<EnderecoPedido> listaEnderecoPedido = criteria.list();
+		List<EnderecoPedidoTO> listaEnderecoPedidoTO = new ArrayList<EnderecoPedidoTO>();
+
+		for ( EnderecoPedido endereco : listaEnderecoPedido ){
+			EnderecoPedidoTO enderecoPedidoTO = new EnderecoPedidoTO(endereco);
+			listaEnderecoPedidoTO.add(enderecoPedidoTO);
+		}
+
+		return listaEnderecoPedidoTO;
 	}
 
 	public SessionFactory getSessionFactory() {
